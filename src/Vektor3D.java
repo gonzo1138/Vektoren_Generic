@@ -1,33 +1,34 @@
-public class Vektor3D implements Vektor {
+public class Vektor3D implements Vektor, Comparable<Vektor3D> {
 
-    double _startX;
-    double _startY;
-    double _startZ;
-
-    double _zielX;
-    double _zielY;
-    double _zielZ;
-
+    double startX;
+    double startY;
+    double startZ;
+    double zielX;
+    double zielY;
+    double zielZ;
     double betrag;
 
     public Vektor3D(double startX, double startY, double startZ, double zielX, double zielY, double zielZ) {
-        _startX = startX;
-        _startY = startY;
-        _startZ = startZ;
-        _zielX = zielX;
-        _zielY = zielY;
-        _zielZ = zielZ;
+        this.startX = startX;
+        this.startY = startY;
+        this.startZ = startZ;
+        this.zielX = zielX;
+        this.zielY = zielY;
+        this.zielZ = zielZ;
 
-        double x = _zielX - _startX;
-        double y = _zielY - _startY;
-        double z = _zielZ - _startZ;
+        double x = this.zielX - this.startX;
+        double y = this.zielY - this.startY;
+        double z = this.zielZ - this.startZ;
         betrag = Math.sqrt((x * x) + (y * y) + (z * z));
     }
 
     @Override
     public String toString() {
-        return "Vektor3D {Startwert x=" + _startX + ", Startwert y=" + _startY + ", Startwert z=" + _startZ +
-                " Zielwert x=" + _zielX + ", Zielwert y=" + _zielY + ", Zielwert z=" + _zielZ + "}\tBetrag des Vektors: " + betrag;
+        return "Start x=" + startX + ", y=" + startY + ", z=" + startZ + "\tZiel: x=" + zielX + ", y=" + zielY + ", z=" + zielZ + "\tBetrag: " + String.format("%1.2f", betrag);
     }
 
+    @Override
+    public int compareTo(Vektor3D ov) {             // .compareTo() returns -1 for <, 0 for =, 1 for >
+        return Double.compare(this.betrag, ov.betrag);
+    }
 }
